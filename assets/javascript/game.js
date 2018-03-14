@@ -9,45 +9,52 @@
     // var dragonfruit = ["d", "r", "a", "g", "o", "n", "f", "r", "u", "i", "t"]
     // var banana = ["b", "a", "n", "a", "n", "a"]
     
-    var letterAppearsInWord
-    var startingGuesses=10
     
-    newGuessesRemaining = function(){
+    var startingGuesses=10;
+    var letterAppearsInWord;
+    var youGuessedTheWord;
+     
+    
+    // newGuessesRemaining = function(){
+    //     var x=0
+    //     var guessesRemaining = startingGuesses - x
 
-        if (letterAppearsInWord === false){
-            guessesRemaining= startingGuesses - 1
+    //     if (letterAppearsInWord === false){
+    //         x++
             
-        }
-        if (letterAppearsInWord === true){
-            guessesRemaining= startingGuesses
-        }
+    //     }
+    //     if (letterAppearsInWord === true){
+            
+    //     }
             
         
-        document.getElementById("remainingGuesses").innerHTML = guessesRemaining
-    }
+    //     document.getElementById("remainingGuesses").innerHTML = guessesRemaining
+    // }
 
 
 
 
 var wordOptions = ["papaya", "mango", "guava", "pineapple", "coconut", "dragonfruit", "banana"];
-var guessesRemaining = newGuessesRemaining();
+
 var lettersAlreadyGuessed = [ ];
 var chosenWord;
 var randomWordArray;
 var blanksArray = [];
+var wins = 0
 //var possibleGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l","m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 
 
 
-    
+    chooseWord = function(){
 
         chosenWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
         randomWordArray = chosenWord.split("");
         for (var i = 0; i < randomWordArray.length; i++){
             blanksArray[i] = ["_"];
         }
-
+    }
+    chooseWord();
 
         
         
@@ -61,20 +68,42 @@ var blanksArray = [];
 
       // Determines which key was pressed.
       var userGuess = event.key;
+       
 
-      for (var i = 0; i < randomWordArray.length; i++){
-            if (userGuess === randomWordArray[i]){
-                blanksArray[i] = userGuess;
+      //checkword = function() {
+    letterAppearsInWord=false;
+    for (var i = 0; i < randomWordArray.length; i++){
+        if (userGuess === randomWordArray[i]){
+            blanksArray[i] = userGuess;
 
-                document.getElementById("areaOfHTMLForWord").innerHTML = blanksArray.join(" ");
-                letterAppearsInWord = true;
-                
-            }
+            document.getElementById("areaOfHTMLForWord").innerHTML = blanksArray.join(" ");
+            //
+            letterAppearsInWord=true;
             
-            else (letterAppearsInWord=false);
+        }       
+    }
+
+    if (letterAppearsInWord===true){
+        console.log("good guess")
+    }
+    else {
+        lettersAlreadyGuessed.push(userGuess);
+        startingGuesses--;
+    }
+            //letterAppearsInWord===false};
+            
                 
-            newGuessesRemaining();
-            }
+            //newGuessesRemaining();
+            
+        //}
+        //checkword();
+        
+        // if (letterAppearsInWord===false){
+        //     startingGuesses--
+        document.getElementById("remainingGuesses").innerHTML = startingGuesses
+
+        letterAppearsInWord = true
+        // }
 
 
     // for (var i = 0; i < possibleGuesses.length; i++){
@@ -96,13 +125,39 @@ var blanksArray = [];
         console.log("User guess: " + userGuess);
         console.log("Answer: " + chosenWord);
 
-        lettersAlreadyGuessed.push(userGuess);
+        
 
 
         console.log(lettersAlreadyGuessed);
                
         document.getElementById("pastGuessesGoHere").innerHTML=lettersAlreadyGuessed;
-    
-    
+
+
+        if (startingGuesses < 0){
+            alert("You Lose")
+            return(event);
         }
-    ;
+        
+        youGuessedTheWord=true;
+        for (i = 0; i < randomWordArray.length; i++){
+        if (blanksArray[i]!==randomWordArray[i]) {
+            youGuessedTheWord=false;
+        }
+        if(youGuessedTheWord){
+            alert("You guessed it!");
+            wins++;
+            document.getElementById("wins").innerHTML=wins;
+        }
+            
+
+
+        }
+    }
+    
+    
+        
+
+
+        // I need to fix the lives. 
+        // it is set up so that ALL guesses, even correct ones, show up in the past guesses category
+        // how do i write for the game to restart after the "you lose" alert?
