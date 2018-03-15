@@ -47,14 +47,32 @@ var wins = 0
 
 
     chooseWord = function(){
-
+        blanksArray = [ ]
         chosenWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
         randomWordArray = chosenWord.split("");
         for (var i = 0; i < randomWordArray.length; i++){
             blanksArray[i] = ["_"];
         }
+        document.getElementById("areaOfHTMLForWord").innerHTML = blanksArray.join(" ");
+        
+        
     }
     chooseWord();
+
+    nextGame = function(){
+        
+    
+        chooseWord();
+        
+        startingGuesses=10;
+        lettersAlreadyGuessed = [];
+
+        document.getElementById("remainingGuesses").innerHTML = startingGuesses
+        document.getElementById("pastGuessesGoHere").innerHTML=lettersAlreadyGuessed;
+        // document.getElementById("areaOfHTMLForWord").innerHTML = "new game";
+        document.getElementById("areaOfHTMLForWord").innerHTML = blanksArray.join(" ");
+        
+    }
 
         
         
@@ -100,9 +118,9 @@ var wins = 0
         
         // if (letterAppearsInWord===false){
         //     startingGuesses--
-        document.getElementById("remainingGuesses").innerHTML = startingGuesses
+    document.getElementById("remainingGuesses").innerHTML = startingGuesses
 
-        letterAppearsInWord = true
+    letterAppearsInWord = true
         // }
 
 
@@ -133,31 +151,30 @@ var wins = 0
         document.getElementById("pastGuessesGoHere").innerHTML=lettersAlreadyGuessed;
 
 
-        if (startingGuesses < 0){
+        if (startingGuesses < 1){
             alert("You Lose")
-            return(event);
+            nextGame();
         }
         
         youGuessedTheWord=true;
         for (i = 0; i < randomWordArray.length; i++){
-        if (blanksArray[i]!==randomWordArray[i]) {
-            youGuessedTheWord=false;
+            if (blanksArray[i]!==randomWordArray[i]){
+                youGuessedTheWord=false;
+            }
         }
-        if(youGuessedTheWord){
-            alert("You guessed it!");
+
+        if(youGuessedTheWord===true){
+            console.log("You guessed it!");
             wins++;
             document.getElementById("wins").innerHTML=wins;
+            nextGame();
+
         }
             
 
 
-        }
-    }
-    
-    
         
+}
 
 
-        // I need to fix the lives. 
-        // it is set up so that ALL guesses, even correct ones, show up in the past guesses category
-        // how do i write for the game to restart after the "you lose" alert?
+    // The only remaining bug there seems to be is that if you keep playing for multiple games it gets really glitchy :/
