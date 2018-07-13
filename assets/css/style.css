@@ -1,14 +1,26 @@
+#title {
+    font-family: "Cookie", cursive;
+    font-size: 200px;
+    font-style: bold;
+    color: orange;
+    text-align: right;
+}
 
-
-.container {
+.gamecontain {
+    position: absolute;
+    right: 50px;
+    top: 300px;
     width: 600px;
     text-align: center;
-    color: rgb(255, 145, 0);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-family: "Courgette", cursive;
     font-size: 40px;
-    background-color: rgba(67, 124, 67, 0.678);
+    background-color: rgba(27, 64, 83, 0.92);
 
     
 
 }
 
+body {
+    background-size: 100%;
+}

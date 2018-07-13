@@ -8,7 +8,7 @@ var randomWordArray;
 var blanksArray = [];
 var wins = 0
 
-
+document.getElementById("wins").innerHTML=wins;
 
 
 chooseWord = function(){
