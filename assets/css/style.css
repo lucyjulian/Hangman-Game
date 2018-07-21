@@ -3,24 +3,25 @@
     font-size: 200px;
     font-style: bold;
     color: orange;
-    text-align: right;
+    text-align: center;
+    text-shadow: 3px 3px palevioletred;
 }
 
 .gamecontain {
-    position: absolute;
-    right: 50px;
-    top: 300px;
+    align-self: center;
     width: 600px;
     text-align: center;
     color: white;
     font-family: "Courgette", cursive;
     font-size: 40px;
     background-color: rgba(27, 64, 83, 0.92);
-
+    border-style: solid;
+    border-width: 3px;
+    border-color: palevioletred;
     
 
 }
 
-body {
+/* body {
     background-size: 100%;
-}
+} */

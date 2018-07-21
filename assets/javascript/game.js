@@ -34,7 +34,7 @@ nextGame = function(){
     lettersAlreadyGuessed = [];
 
     document.getElementById("remainingGuesses").innerHTML = startingGuesses
-    document.getElementById("pastGuessesGoHere").innerHTML=lettersAlreadyGuessed;
+    document.getElementById("pastGuessesGoHere").innerHTML="Press any key to get started!";
         
     document.getElementById("areaOfHTMLForWord").innerHTML = blanksArray.join(" ");
         
